@@ -5,7 +5,7 @@ import TopBar from './TopBar';
 export default function HomeScreen({ setScreen }) {
   return (
     <View style={styles.container}>
-      <TopBar title="Home" />
+      <TopBar title="ROI Home" />
 
       <View style={styles.content}>
         <TouchableOpacity style={styles.button} onPress={() => setScreen("directory")}>
