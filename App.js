@@ -8,37 +8,41 @@ import StaffDetails from './screens/StaffDetails';
 import SettingsScreen from './screens/SettingsScreen';
 
 export default function App() {
-  const [screen, setScreen] = React.useState("home");
+  const [screen, setScreen] = React.useState('home');
   const [selectedStaff, setSelectedStaff] = React.useState(null);
 
   const [staffList, setStaffList] = React.useState([
     {
       id: 1,
-      name: "Alexander Ross",
-      role: "IT Manager",
-      email: "alex.ross@roi.com",
-      phone: "0400 111 222",
-      photo: require('./assets/profile.png')
+      name: 'Alexander Ross',
+      role: 'IT Manager',
+      email: 'alex.ross@roi.com',
+      phone: '0400 111 222',
+      photo: require('./assets/profile.png'),
     },
     {
       id: 2,
-      name: "Billy Jones",
-      role: "Executive Manager",
-      email: "billy.jones@roi.com",
-      phone: "0400 333 444",
-      photo: require('./assets/profile.png')
-    }
+      name: 'Billy Jones',
+      role: 'Executive Manager',
+      email: 'billy.jones@roi.com',
+      phone: '0400 333 444',
+      photo: require('./assets/profile.png'),
+    },
   ]);
 
   const addStaff = (newStaff) => {
     setStaffList([...staffList, newStaff]);
   };
 
+  const deleteStaff = (id) => {
+    setStaffList(staffList.filter((staff) => staff.id !== id));
+  };
+
   return (
     <View style={{ flex: 1 }}>
-      {screen === "home" && <HomeScreen setScreen={setScreen} />}
+      {screen === 'home' && <HomeScreen setScreen={setScreen} />}
 
-      {screen === "directory" && (
+      {screen === 'directory' && (
         <DirectoryScreen
           setScreen={setScreen}
           staffList={staffList}
@@ -46,21 +50,22 @@ export default function App() {
         />
       )}
 
-      {screen === "details" && (
+      {screen === 'details' && (
         <StaffDetails
           setScreen={setScreen}
           selectedStaff={selectedStaff}
+          deleteStaff={deleteStaff}
         />
       )}
 
-      {screen === "add" && (
+      {screen === 'add' && (
         <AddStaff
           setScreen={setScreen}
           addStaff={addStaff}
         />
       )}
 
-      {screen === "settings" && (
+      {screen === 'settings' && (
         <SettingsScreen
           setScreen={setScreen}
         />

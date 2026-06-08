@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, Alert } from 'react-native';
 import TopBar from './TopBar';
 
-export default function StaffDetails({ setScreen, selectedStaff }) {
+export default function StaffDetails({ setScreen, selectedStaff, deleteStaff }) {
   if (!selectedStaff) {
     return (
       <View style={styles.container}>
@@ -11,6 +11,24 @@ export default function StaffDetails({ setScreen, selectedStaff }) {
       </View>
     );
   }
+
+  const handleDelete = () => {
+    Alert.alert(
+      'Delete Staff',
+      `Are you sure you want to delete ${selectedStaff.name}?`,
+      [
+        { text: 'Cancel', style: 'cancel' },
+        {
+          text: 'Delete',
+          style: 'destructive',
+          onPress: () => {
+            deleteStaff(selectedStaff.id);
+            setScreen('directory');
+          },
+        },
+      ]
+    );
+  };
 
   return (
     <View style={styles.container}>
@@ -30,9 +48,14 @@ export default function StaffDetails({ setScreen, selectedStaff }) {
           <Text style={styles.value}>{selectedStaff.phone}</Text>
         </View>
 
-        <TouchableOpacity style={styles.backButton} onPress={() => setScreen("directory")}>
+        <TouchableOpacity style={styles.backButton} onPress={() => setScreen('directory')}>
           <Text style={styles.backButtonText}>Back to Directory</Text>
         </TouchableOpacity>
+
+        <TouchableOpacity style={styles.deleteButton} onPress={handleDelete}>
+          <Text style={styles.deleteButtonText}>Delete Staff</Text>
+        </TouchableOpacity>
+
       </View>
     </View>
   );
@@ -44,7 +67,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     paddingTop: 80,
-    alignItems: "center",
+    alignItems: 'center',
   },
   photo: {
     width: 140,
@@ -54,25 +77,25 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 26,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     marginBottom: 5,
-    textAlign: "center",
+    textAlign: 'center',
   },
   role: {
     fontSize: 16,
-    color: "#555",
+    color: '#555',
     marginBottom: 25,
-    textAlign: "center",
+    textAlign: 'center',
   },
   infoBox: {
-    width: "100%",
-    backgroundColor: "#f2f202",
+    width: '100%',
+    backgroundColor: '#f2f2f2',
     padding: 20,
     borderRadius: 12,
     marginBottom: 30,
   },
   label: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
     marginTop: 10,
     fontSize: 14,
   },
@@ -81,15 +104,28 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   backButton: {
-    backgroundColor: "#c62828",
+    backgroundColor: '#0d1b4c',
     padding: 15,
     borderRadius: 10,
-    width: "80%",
+    width: '80%',
+    marginBottom: 15,
   },
   backButtonText: {
-    color: "#fff",
-    textAlign: "center",
-    fontWeight: "bold",
+    color: '#fff',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
+  deleteButton: {
+    backgroundColor: '#c62828',
+    padding: 15,
+    borderRadius: 10,
+    width: '80%',
+  },
+  deleteButtonText: {
+    color: '#fff',
+    textAlign: 'center',
+    fontWeight: 'bold',
     fontSize: 16,
   },
 });
