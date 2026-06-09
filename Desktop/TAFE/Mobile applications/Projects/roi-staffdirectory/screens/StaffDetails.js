@@ -39,7 +39,6 @@ export default function StaffDetails({ setScreen, selectedStaff, deleteStaff }) 
           <Text style={styles.backButtonText}>Back to Directory</Text>
         </TouchableOpacity>
 
-        {/* Confirmation box */}
         {confirmDelete ? (
           <View style={styles.confirmBox}>
             <Text style={styles.confirmText}>Are you sure you want to delete {selectedStaff.name}?</Text>
@@ -104,66 +103,3 @@ const styles = StyleSheet.create({
   value: {
     fontSize: 15,
     marginBottom: 10,
-  },
-  backButton: {
-    backgroundColor: '#0d1b4c',
-    padding: 15,
-    borderRadius: 10,
-    width: '80%',
-    marginBottom: 15,
-  },
-  backButtonText: {
-    color: '#fff',
-    textAlign: 'center',
-    fontWeight: 'bold',
-    fontSize: 16,
-  },
-  deleteButton: {
-    backgroundColor: '#c62828',
-    padding: 15,
-    borderRadius: 10,
-    width: '80%',
-  },
-  deleteButtonText: {
-    color: '#fff',
-    textAlign: 'center',
-    fontWeight: 'bold',
-    fontSize: 16,
-  },
-  confirmBox: {
-    width: '80%',
-    backgroundColor: '#fff',
-    borderRadius: 12,
-    padding: 20,
-    borderWidth: 1,
-    borderColor: '#c62828',
-    alignItems: 'center',
-  },
-  confirmText: {
-    fontSize: 15,
-    textAlign: 'center',
-    marginBottom: 15,
-    color: '#333',
-  },
-  confirmRow: {
-    flexDirection: 'row',
-    gap: 10,
-  },
-  cancelButton: {
-    backgroundColor: '#0d1b4c',
-    padding: 12,
-    borderRadius: 8,
-    flex: 1,
-  },
-  cancelButtonText: {
-    color: '#fff',
-    textAlign: 'center',
-    fontWeight: 'bold',
-  },
-  confirmDeleteButton: {
-    backgroundColor: '#c62828',
-    padding: 12,
-    borderRadius: 8,
-    flex: 1,
-  },
-});
